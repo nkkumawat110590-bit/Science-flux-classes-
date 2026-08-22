@@ -30,16 +30,23 @@ supplied Bruker OPUS report (`Sample 9`, coniferous forest, 30/06/2025).
 
 ```
 data/reference/    the supplied report's trace, digitised out of the PDF
-output/spectra/    fourteen single-sample reports (PDF + PNG), OPUS-like layout
+output/spectra/    fourteen single-sample reports (PDF + PNG), plain black trace
+output/spectra_colour/  the same fourteen, one hue per land use, two depth steps
 output/data/       fourteen spectra as CSV: wavenumber, %T, absorbance
 output/peak_tables/  picked band minima with assignments, one file per sample
 output/figures/    depth-pair overlays, the two all-land-use stacks, the
                    organic-to-mineral bar chart, and the reference check
-output/all_spectra.pdf   all fourteen reports in one file
+output/all_spectra.pdf         all fourteen reports in one file
+output/all_spectra_colour.pdf  the same fourteen, in colour
 output/peak_summary.csv  every picked band across all fourteen samples
 output/band_indices.csv  diagnostic band heights and ratios
-docs/              band assignments, land-use profiles, band ratios
+docs/              band assignments, land-use profiles, band ratios, colour
 ```
+
+Each spectrum comes two ways: a plain black trace, and a colour version where
+the hue names the land use and its lightness step names the depth. Same data,
+same peak labels - pick whichever suits the page it is going on.
+[docs/palette.md](docs/palette.md) records the palette and its validation.
 
 ## How the spectra are built
 

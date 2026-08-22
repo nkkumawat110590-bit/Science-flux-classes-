@@ -27,7 +27,9 @@ import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
 from scipy.signal import find_peaks
 
-from band_model import BANDS, DEPTHS, LAND_USES, LandUse, group_multiplier
+from band_model import (BANDS, DEPTHS, INK_MUTED, INK_PRIMARY, INK_SECONDARY,
+                        LAND_USES, PALETTE, SURFACE, LandUse, colour_for,
+                        group_multiplier)
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "output"
@@ -110,7 +112,7 @@ def nearest_assignment(wn: float):
 # --------------------------------------------------------------------------
 # plotting
 # --------------------------------------------------------------------------
-def style_axes(ax):
+def style_axes(ax, colour_mode=False):
     ax.set_xlim(4000, 400)
     ax.set_xlabel("Wavenumber cm-1")
     ax.set_ylabel("Transmittance [%]")
@@ -118,16 +120,35 @@ def style_axes(ax):
     for spine in ax.spines.values():
         spine.set_linewidth(0.6)
     ax.set_xticks(np.arange(500, 4001, 500))
+    if not colour_mode:
+        return
+    # recessive frame and grid; the trace is the only saturated thing on the page
+    ax.set_facecolor(SURFACE)
+    ax.grid(True, axis="y", color="#e6e5e1", lw=0.5, zorder=0)
+    ax.set_axisbelow(True)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    for side in ("bottom", "left"):
+        ax.spines[side].set_color("#d5d4cf")
+    ax.tick_params(colors=INK_SECONDARY)
+    ax.xaxis.label.set_color(INK_SECONDARY)
+    ax.yaxis.label.set_color(INK_SECONDARY)
 
 
-def draw_spectrum(ax, land_use, top, bottom, v, t, peaks):
+def draw_spectrum(ax, land_use, top, bottom, v, t, peaks, colour=None):
     """Draw one transmittance trace with tiered peak labels.
 
     The wavenumbers are printed on their own, without the vertical leader
     lines an OPUS report draws from each band down to its label.
     """
-    ax.plot(v, t, color="black", lw=0.7)
-    style_axes(ax)
+    if colour is None:
+        ax.plot(v, t, color="black", lw=0.7)
+        style_axes(ax)
+    else:
+        # absorption reads as the area the trace drops away from full pass
+        ax.fill_between(v, t, t.max(), color=colour, alpha=0.13, lw=0, zorder=1)
+        ax.plot(v, t, color=colour, lw=0.9, zorder=2)
+        style_axes(ax, colour_mode=True)
 
     tmin, tmax = float(t.min()), float(t.max())
     span = tmax - tmin
@@ -150,64 +171,95 @@ def draw_spectrum(ax, land_use, top, bottom, v, t, peaks):
             tier_last.append(wn)
             tier = len(tier_last) - 1
         top_y = tmin - 0.035 * span - tier * tier_gap
-        ax.text(wn, top_y, f"{wn:.2f}", rotation=90,
-                ha="center", va="top", fontsize=6.4)
+        ax.text(wn, top_y, f"{wn:.2f}", rotation=90, ha="center", va="top",
+                fontsize=6.4, color=INK_MUTED if colour else "black")
 
     ax.set_title(f"{land_use.name}  |  {top}-{bottom} cm  |  soil FTIR (simulated)",
-                 fontsize=12, pad=10)
+                 fontsize=12, pad=10,
+                 color=INK_PRIMARY if colour else "black")
 
 
-def plot_single(land_use: LandUse, top: int, bottom: int, v, t, peaks, path_stem: Path):
+def plot_single(land_use: LandUse, top: int, bottom: int, v, t, peaks,
+                path_stem: Path, colour: str = None):
     fig, ax = plt.subplots(figsize=(11.0, 7.4))
     fig.subplots_adjust(left=0.085, right=0.975, top=0.90, bottom=0.16)
-    draw_spectrum(ax, land_use, top, bottom, v, t, peaks)
-    fig.text(0.085, 0.055, f"Sample: {land_use.short}_{top}-{bottom}cm     "
-                           f"Range 4000-400 cm-1     Resolution 4 cm-1 (model)",
-             fontsize=8)
-    fig.text(0.085, 0.028, STAMP, fontsize=7.5, style="italic", color="0.35")
-    fig.savefig(path_stem.with_suffix(".pdf"))
-    fig.savefig(path_stem.with_suffix(".png"), dpi=200)
+    if colour:
+        fig.patch.set_facecolor(SURFACE)
+        # a chip carries the land-use identity; the text itself stays ink
+        fig.patches.append(plt.Rectangle((0.085, 0.049), 0.013, 0.019, lw=0,
+                                         facecolor=colour,
+                                         transform=fig.transFigure, zorder=5))
+    draw_spectrum(ax, land_use, top, bottom, v, t, peaks, colour=colour)
+    fig.text(0.105 if colour else 0.085, 0.049 if colour else 0.055,
+             f"Sample: {land_use.short}_{top}-{bottom}cm     "
+             f"Range 4000-400 cm-1     Resolution 4 cm-1 (model)",
+             fontsize=8, color=INK_SECONDARY if colour else "black",
+             va="bottom" if colour else "baseline")
+    fig.text(0.085, 0.022 if colour else 0.028, STAMP, fontsize=7.5,
+             style="italic", color=INK_MUTED if colour else "0.35")
+    fig.savefig(path_stem.with_suffix(".pdf"), facecolor=fig.get_facecolor())
+    fig.savefig(path_stem.with_suffix(".png"), dpi=200, facecolor=fig.get_facecolor())
     plt.close(fig)
 
 
 def plot_depth_pair(land_use: LandUse, series, path_stem: Path):
+    """The two depths of one system, in that system's hue, light over deep."""
     fig, ax = plt.subplots(figsize=(11.0, 6.4))
+    fig.patch.set_facecolor(SURFACE)
     fig.subplots_adjust(left=0.085, right=0.975, top=0.90, bottom=0.17)
-    colours = {"0-15": "#1f4e79", "15-30": "#c0504d"}
+    styles = {"0-15": (PALETTE[land_use.key][0], "-"),
+              "15-30": (PALETTE[land_use.key][1], (0, (5, 1.6)))}
     for (label, v, t) in series:
-        ax.plot(v, t, lw=0.8, color=colours[label], label=f"{label} cm")
-    style_axes(ax)
-    ax.legend(frameon=False, fontsize=9, loc="lower left")
-    ax.set_title(f"{land_use.name} - depth comparison (simulated)", fontsize=12, pad=10)
-    fig.text(0.085, 0.035, STAMP, fontsize=7.5, style="italic", color="0.35")
-    fig.savefig(path_stem.with_suffix(".pdf"))
-    fig.savefig(path_stem.with_suffix(".png"), dpi=200)
+        colour, dash = styles[label]
+        ax.plot(v, t, lw=1.0, color=colour, linestyle=dash, label=f"{label} cm")
+    style_axes(ax, colour_mode=True)
+    leg = ax.legend(frameon=False, fontsize=9, loc="lower left")
+    for text in leg.get_texts():
+        text.set_color(INK_SECONDARY)
+    ax.set_title(f"{land_use.name} - depth comparison (simulated)",
+                 fontsize=12, pad=10, color=INK_PRIMARY)
+    fig.text(0.085, 0.035, STAMP, fontsize=7.5, style="italic", color=INK_MUTED)
+    fig.savefig(path_stem.with_suffix(".pdf"), facecolor=fig.get_facecolor())
+    fig.savefig(path_stem.with_suffix(".png"), dpi=200, facecolor=fig.get_facecolor())
     plt.close(fig)
 
 
 def plot_all_land_uses(depth_label: str, series, path_stem: Path):
-    """Stacked survey of all seven systems, listed top-down in the given order."""
+    """Stacked survey of all seven systems, listed top-down in the given order.
+
+    Each trace is direct-labelled, which is also the relief the palette's
+    lighter steps need: identity never rests on colour alone.
+    """
+    deep = depth_label.startswith("15")
     fig, ax = plt.subplots(figsize=(11.0, 9.0))
+    fig.patch.set_facecolor(SURFACE)
     fig.subplots_adjust(left=0.075, right=0.97, top=0.93, bottom=0.10)
     step = 58.0
     n = len(series)
     for i, (name, v, t) in enumerate(series):
+        colour = PALETTE[LAND_USES[i].key][1 if deep else 0]
         offset = (n - 1 - i) * step
-        ax.plot(v, t + offset, lw=0.75)
+        ax.fill_between(v, t + offset, t.max() + offset, color=colour,
+                        alpha=0.10, lw=0, zorder=1)
+        ax.plot(v, t + offset, lw=0.85, color=colour, zorder=2)
         j = int(np.argmin(np.abs(v - 3950.0)))
-        ax.text(3960, t[j] + offset + 7.0, name, fontsize=9.5, ha="left", va="bottom")
+        ax.text(3960, t[j] + offset + 7.0, name, fontsize=9.5, ha="left",
+                va="bottom", color=INK_PRIMARY)
     ax.set_xlim(4000, 400)
-    ax.set_xlabel("Wavenumber cm-1")
-    ax.set_ylabel("Transmittance [%] (offset for clarity)")
+    ax.set_xlabel("Wavenumber cm-1", color=INK_SECONDARY)
+    ax.set_ylabel("Transmittance [%] (offset for clarity)", color=INK_SECONDARY)
     ax.set_xticks(np.arange(500, 4001, 500))
     ax.set_yticks([])
+    ax.set_facecolor(SURFACE)
+    ax.tick_params(colors=INK_SECONDARY)
     for side in ("top", "right", "left"):
         ax.spines[side].set_visible(False)
+    ax.spines["bottom"].set_color("#d5d4cf")
     ax.set_title(f"All seven land-use systems, {depth_label} cm (simulated)",
-                 fontsize=12, pad=12)
-    fig.text(0.075, 0.022, STAMP, fontsize=7.5, style="italic", color="0.35")
-    fig.savefig(path_stem.with_suffix(".pdf"))
-    fig.savefig(path_stem.with_suffix(".png"), dpi=200)
+                 fontsize=12, pad=12, color=INK_PRIMARY)
+    fig.text(0.075, 0.022, STAMP, fontsize=7.5, style="italic", color=INK_MUTED)
+    fig.savefig(path_stem.with_suffix(".pdf"), facecolor=fig.get_facecolor())
+    fig.savefig(path_stem.with_suffix(".png"), dpi=200, facecolor=fig.get_facecolor())
     plt.close(fig)
 
 
@@ -301,20 +353,30 @@ def plot_index_bars(rows, path_stem: Path):
 
     x = np.arange(len(names))
     fig, ax = plt.subplots(figsize=(10.5, 5.6))
+    fig.patch.set_facecolor(SURFACE)
+    ax.set_facecolor(SURFACE)
     fig.subplots_adjust(left=0.09, right=0.97, top=0.88, bottom=0.26)
-    ax.bar(x - 0.19, top, 0.38, label="0-15 cm", color="#1f4e79")
-    ax.bar(x + 0.19, deep, 0.38, label="15-30 cm", color="#c0504d")
+    # depth is an ordered pair, so it takes one hue in two steps, not two hues
+    ax.bar(x - 0.20, top, 0.36, label="0-15 cm", color="#6da7ec")
+    ax.bar(x + 0.20, deep, 0.36, label="15-30 cm", color="#1c5cab")
     ax.set_xticks(x)
-    ax.set_xticklabels(names, rotation=25, ha="right", fontsize=9)
-    ax.set_ylabel("A(2925) / A(1032)")
+    ax.set_xticklabels(names, rotation=25, ha="right", fontsize=9,
+                       color=INK_SECONDARY)
+    ax.set_ylabel("A(2925) / A(1032)", color=INK_SECONDARY)
+    ax.grid(True, axis="y", color="#e6e5e1", lw=0.5)
+    ax.set_axisbelow(True)
     ax.set_title("Aliphatic C-H to silicate band ratio - organic enrichment "
-                 "by land use and depth (simulated)", fontsize=11.5, pad=10)
-    ax.legend(frameon=False, fontsize=9)
+                 "by land use and depth (simulated)", fontsize=11.5, pad=10,
+                 color=INK_PRIMARY)
+    leg = ax.legend(frameon=False, fontsize=9)
+    for text in leg.get_texts():
+        text.set_color(INK_SECONDARY)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
-    fig.text(0.09, 0.02, STAMP, fontsize=7.5, style="italic", color="0.35")
-    fig.savefig(path_stem.with_suffix(".pdf"))
-    fig.savefig(path_stem.with_suffix(".png"), dpi=200)
+    ax.tick_params(colors=INK_SECONDARY)
+    fig.text(0.09, 0.02, STAMP, fontsize=7.5, style="italic", color=INK_MUTED)
+    fig.savefig(path_stem.with_suffix(".pdf"), facecolor=fig.get_facecolor())
+    fig.savefig(path_stem.with_suffix(".png"), dpi=200, facecolor=fig.get_facecolor())
     plt.close(fig)
 
 
@@ -346,7 +408,7 @@ def main():
     args = ap.parse_args()
     out = Path(args.outdir)
 
-    for sub in ("data", "spectra", "peak_tables", "figures"):
+    for sub in ("data", "spectra", "spectra_colour", "peak_tables", "figures"):
         (out / sub).mkdir(parents=True, exist_ok=True)
 
     summary_rows = []
@@ -367,6 +429,8 @@ def main():
             summary_rows += write_peak_csv(out / "peak_tables" / f"{stem}.csv",
                                            lu, top, bottom, v, t, a, peaks)
             plot_single(lu, top, bottom, v, t, peaks, out / "spectra" / stem)
+            plot_single(lu, top, bottom, v, t, peaks,
+                        out / "spectra_colour" / stem, colour=colour_for(lu, deep))
 
             idx = {"land_use": lu.name, "depth_cm": label}
             idx.update(compute_indices(v, a))
@@ -399,18 +463,24 @@ def main():
                         for k, val in row.items()})
     plot_index_bars(index_rows, out / "figures" / "organic_to_mineral_ratio")
 
-    # one combined PDF holding all fourteen reports, in the requested order
-    with PdfPages(out / "all_spectra.pdf") as pdf:
-        for lu in LAND_USES:
-            for top, bottom in DEPTHS:
-                v, t, a = synthesise(lu, top > 0)
-                peaks = pick_peaks(v, a)
-                fig, ax = plt.subplots(figsize=(11.0, 7.4))
-                fig.subplots_adjust(left=0.085, right=0.975, top=0.90, bottom=0.16)
-                draw_spectrum(ax, lu, top, bottom, v, t, peaks)
-                fig.text(0.085, 0.028, STAMP, fontsize=7.5, style="italic", color="0.35")
-                pdf.savefig(fig)
-                plt.close(fig)
+    # two combined PDFs holding all fourteen reports, in the requested order
+    for name, tint in (("all_spectra.pdf", False), ("all_spectra_colour.pdf", True)):
+        with PdfPages(out / name) as pdf:
+            for lu in LAND_USES:
+                for top, bottom in DEPTHS:
+                    deep = top > 0
+                    v, t, a = synthesise(lu, deep)
+                    peaks = pick_peaks(v, a)
+                    colour = colour_for(lu, deep) if tint else None
+                    fig, ax = plt.subplots(figsize=(11.0, 7.4))
+                    if colour:
+                        fig.patch.set_facecolor(SURFACE)
+                    fig.subplots_adjust(left=0.085, right=0.975, top=0.90, bottom=0.16)
+                    draw_spectrum(ax, lu, top, bottom, v, t, peaks, colour=colour)
+                    fig.text(0.085, 0.028, STAMP, fontsize=7.5, style="italic",
+                             color=INK_MUTED if colour else "0.35")
+                    pdf.savefig(fig, facecolor=fig.get_facecolor())
+                    plt.close(fig)
 
     print(f"\nwrote {len(summary_rows)} picked bands across "
           f"{len(LAND_USES) * len(DEPTHS)} spectra into {out}")

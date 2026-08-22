@@ -216,6 +216,35 @@ DEPTHS = [(0, 15), (15, 30)]
 
 LAND_USE_BY_KEY = {lu.key: lu for lu in LAND_USES}
 
+# --------------------------------------------------------------------------
+# Colour: one hue per land use, in fixed slot order, two lightness steps for
+# the two depths (the shallower soil takes the lighter step).  Hues are the
+# first seven categorical slots of the reference palette; the depth steps are
+# the same hue moved +-0.0825 in OKLab lightness, clamped into the L
+# 0.45-0.755 band.  Validated with the data-viz palette validator: every
+# depth pair passes all-pairs CVD, lightness, chroma and normal-vision gates,
+# and both seven-colour sets pass on adjacent pairs.  See docs/palette.md.
+# --------------------------------------------------------------------------
+PALETTE = {
+    "coniferous_forest": ("#4592f2", "#055fba"),   # blue
+    "grazing_land":      ("#ff8350", "#ce4d11"),   # orange
+    "wasteland":         ("#44ca93", "#009562"),   # aqua
+    "apple_orchard":     ("#ea9e00", "#b36b00"),   # yellow
+    "paddy_field":       ("#f587b0", "#bd547e"),   # magenta
+    "maize_field":       ("#319e2c", "#006b00"),   # green
+    "vegetable_field":   ("#7a72e4", "#4e3fad"),   # violet
+}
+
+# chart ink and surface, kept off the series hues
+SURFACE = "#fcfcfb"
+INK_PRIMARY = "#0b0b0b"
+INK_SECONDARY = "#52514e"
+INK_MUTED = "#8a8880"
+
+
+def colour_for(land_use: LandUse, deep: bool) -> str:
+    return PALETTE[land_use.key][1 if deep else 0]
+
 
 def group_multiplier(land_use: LandUse, group: str, deep: bool) -> float:
     """Combined land-use and depth multiplier for one modulation group."""
