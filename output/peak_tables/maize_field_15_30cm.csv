@@ -1,0 +1,20 @@
+land_use,depth_cm,wavenumber_cm-1,transmittance_percent,absorbance,band_group,assignment
+Maize field,15-30,463.65,62.99,0.2007,silicate,Si-O-Si bending of quartz and phyllosilicates
+Maize field,15-30,519.59,68.49,0.1643,clay_bend,Si-O-Al bending of octahedral sheet
+Maize field,15-30,608.32,83.20,0.0799,feox,Fe-O and Si-O-Al bending
+Maize field,15-30,693.20,85.39,0.0686,quartz,Quartz / Si-O-Al vibration
+Maize field,15-30,795.43,79.39,0.1003,quartz,"Quartz doublet, Si-O symmetric stretch"
+Maize field,15-30,874.52,84.96,0.0708,carbonate,Carbonate v2 out-of-plane bend (calcite)
+Maize field,15-30,916.95,81.52,0.0887,clay_bend,Al-Al-OH deformation of dioctahedral clays
+Maize field,15-30,1032.69,38.20,0.4180,silicate,Si-O stretch of clay minerals; C-O of polysaccharides
+Maize field,15-30,1258.38,88.79,0.0516,phenolic_co,"C-O stretch and O-H deformation of phenols, aryl ethers"
+Maize field,15-30,1441.62,84.82,0.0715,ch_bend,C-H deformation of CH2 / CH3; lignin methoxyl
+Maize field,15-30,1648.02,87.68,0.0571,aromatic_amide,"Aromatic C=C, amide I C=O and H-O-H bending"
+Maize field,15-30,1715.53,88.98,0.0507,carboxyl,"C=O stretch of carboxylic acids, ketones and aldehydes"
+Maize field,15-30,2163.05,93.98,0.0269,silica_ot,Quartz / silicate overtone-combination band
+Maize field,15-30,2519.90,93.03,0.0314,carbonate,Carbonate combination band (calcite)
+Maize field,15-30,2857.46,92.74,0.0327,aliphatic,Symmetric C-H stretch of aliphatic CH2
+Maize field,15-30,2926.90,91.17,0.0401,aliphatic,Asymmetric C-H stretch of aliphatic CH2
+Maize field,15-30,3395.63,78.84,0.1033,water_oh,"Broad O-H stretch: sorbed water, phenolic and alcoholic OH"
+Maize field,15-30,3619.39,83.77,0.0769,clay_oh,Al-Al-OH stretch of 1:1 / 2:1 clays
+Maize field,15-30,3694.62,89.00,0.0506,clay_oh,Kaolinite inner-surface O-H stretch
