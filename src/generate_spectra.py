@@ -121,15 +121,19 @@ def style_axes(ax):
 
 
 def draw_spectrum(ax, land_use, top, bottom, v, t, peaks):
-    """Draw one OPUS-style transmittance trace with tiered peak labels."""
+    """Draw one transmittance trace with tiered peak labels.
+
+    The wavenumbers are printed on their own, without the vertical leader
+    lines an OPUS report draws from each band down to its label.
+    """
     ax.plot(v, t, color="black", lw=0.7)
     style_axes(ax)
 
     tmin, tmax = float(t.min()), float(t.max())
     span = tmax - tmin
-    ax.set_ylim(tmin - 0.30 * span, tmax + 0.05 * span)
+    ax.set_ylim(tmin - 0.26 * span, tmax + 0.05 * span)
 
-    # OPUS stacks crowded labels on successive tiers instead of overprinting
+    # crowded labels stack on successive tiers instead of overprinting
     tier_last = []
     min_sep = 55.0          # cm-1 needed between two rotated labels on a tier
     tier_gap = 0.075 * span
@@ -145,9 +149,8 @@ def draw_spectrum(ax, land_use, top, bottom, v, t, peaks):
                 continue        # too crowded to label legibly
             tier_last.append(wn)
             tier = len(tier_last) - 1
-        top_y = tmin - 0.055 * span - tier * tier_gap
-        ax.plot([wn, wn], [t[i] - 0.02 * span, top_y], color="black", lw=0.3)
-        ax.text(wn, top_y - 0.008 * span, f"{wn:.2f}", rotation=90,
+        top_y = tmin - 0.035 * span - tier * tier_gap
+        ax.text(wn, top_y, f"{wn:.2f}", rotation=90,
                 ha="center", va="top", fontsize=6.4)
 
     ax.set_title(f"{land_use.name}  |  {top}-{bottom} cm  |  soil FTIR (simulated)",
