@@ -35,7 +35,7 @@ def scene_title(ax, t, dur):
     mx = seg(t, [(0.9, 2.9), (2.6, 5.55), (3.4, 5.55), (4.4, 2.9)])
     cy = 3.05
     solenoid(ax, 6.55, cy, 2.0, 0.72, n=8, color=COPPER, alpha=a * (0.6 + 0.4 * glow), lw=3.2)
-    bar_magnet(ax, mx, cy, alpha=a, fs=17)
+    bar_magnet(ax, mx, cy, north_left=False, alpha=a, fs=17)
     wire(ax, [(7.55, cy - 0.72), (8.6, cy - 0.72), (8.6, cy), (9.25, cy)], alpha=a)
     wire(ax, [(7.55, cy + 0.72), (8.6, cy + 0.72), (8.6, cy), (9.25, cy)], alpha=a)
     d = 0.0
@@ -146,7 +146,7 @@ def scene_faraday(ax, t, dur):
 
     cy = 6.45
     solenoid(ax, 6.2, cy, 2.4, 0.86, n=9, color=COPPER, alpha=a, lw=3.0, z=5)
-    bar_magnet(ax, _magnet_x(t), cy, alpha=a, z=8)
+    bar_magnet(ax, _magnet_x(t), cy, north_left=False, alpha=a, z=8)
     if abs(defl) > 0.04:
         vx = 0.85 if emf < 0 else -0.85
         arrow(ax, _magnet_x(t), cy + 1.22, _magnet_x(t) + vx, cy + 1.22,
@@ -211,7 +211,8 @@ def scene_lenz(ax, t, dur):
         mx = seg(t, [(12.5, 3.25), (18.5, 1.5), (22.0, 1.5)])
 
     solenoid(ax, 5.9, cy, 2.2, 0.92, n=9, color=COPPER, alpha=a, lw=3.0, z=5)
-    bar_magnet(ax, mx, cy, alpha=a, z=8)
+    # N-first: the leading pole faces the coil, which is what the labels below claim
+    bar_magnet(ax, mx, cy, north_left=False, alpha=a, z=8)
 
     # induced pole on the coil face nearest the magnet
     face_pole = "N" if approaching else "S"
@@ -241,7 +242,9 @@ def scene_lenz(ax, t, dur):
           cy + 1.15 * np.sin(tip - (0.13 if approaching else -0.13)),
           5.9 + 1.15 * np.cos(tip), cy + 1.15 * np.sin(tip),
           color=CYAN, lw=2.6, alpha=a, head=0.26, z=6)
-    ax.text(5.9, cy - 1.78, "induced current : " + spin, color=CYAN, fontsize=16,
+    ax.text(5.9, cy - 1.72, "induced current : " + spin, color=CYAN, fontsize=16,
+            va="center", ha="center", alpha=a, zorder=6)
+    ax.text(5.9, cy - 2.08, "(seen from the magnet's side)", color=MUTED, fontsize=13,
             va="center", ha="center", alpha=a, zorder=6)
 
     ax.text(4.3, 7.52,

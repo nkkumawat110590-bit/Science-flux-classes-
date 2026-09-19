@@ -196,7 +196,7 @@ def scene_motional(ax, t, dur):
 
     field_into_page(ax, 1.55, 8.15, y1 + 0.28, y2 - 0.28, nx=9, ny=4,
                     color=CYAN, alpha=0.5 * a, fs=14)
-    ax.text(4.85, y2 + 0.72, r"$\vec{B}$  into the page", color=CYAN, fontsize=17,
+    ax.text(2.35, y2 + 1.12, r"$\vec{B}$  into the page", color=CYAN, fontsize=17,
             va="center", ha="center", alpha=a, zorder=4)
 
     ax.plot([1.3, 8.4], [y1, y1], color=COPPER, lw=3.2, alpha=a, zorder=5)
@@ -222,14 +222,17 @@ def scene_motional(ax, t, dur):
               lw=2.8, alpha=a, head=0.26, z=8)
         ax.text(x_r - 0.52 * vsign, y1 - 0.76, r"$F=BI\ell$", color=PINK, fontsize=16,
                 va="center", ha="center", alpha=a, zorder=8)
-        # induced current: up the rod, left along the top rail, back along the bottom
-        arrow(ax, x_r - 0.34, 5.32, x_r - 0.34, 5.98, color=YELLOW, lw=2.6,
+        # Induced current follows qv x B, so it reverses with the rod: up the rod
+        # and left along the top rail on the +x stroke, the other way coming back.
+        ca, cb = (5.32, 5.98) if vsign > 0 else (5.98, 5.32)
+        arrow(ax, x_r - 0.34, ca, x_r - 0.34, cb, color=YELLOW, lw=2.6,
               alpha=a, head=0.24, z=8)
         for xx in (2.6, 3.9, 5.2):
             if xx < x_r - 0.55:
-                arrow(ax, xx + 0.34, y2 + 0.16, xx, y2 + 0.16, color=YELLOW, lw=2.2,
+                ta, tb = (xx + 0.34, xx) if vsign > 0 else (xx, xx + 0.34)
+                arrow(ax, ta, y2 + 0.16, tb, y2 + 0.16, color=YELLOW, lw=2.2,
                       alpha=a, head=0.2, z=8)
-                arrow(ax, xx, y1 - 0.16, xx + 0.34, y1 - 0.16, color=YELLOW, lw=2.2,
+                arrow(ax, tb, y1 - 0.16, ta, y1 - 0.16, color=YELLOW, lw=2.2,
                       alpha=a, head=0.2, z=8)
         ax.text(x_r - 0.72, 5.65, "I", color=YELLOW, fontsize=17, fontweight="bold",
                 va="center", ha="center", alpha=a, zorder=8)
