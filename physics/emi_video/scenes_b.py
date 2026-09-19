@@ -29,7 +29,7 @@ def pipe(ax, cx, y0, y1, hw, color, label, alpha=1.0):
 # ==================================================================== 6 EDDY
 def scene_eddy(ax, t, dur):
     a = fade(t, 0.5, 0.4, dur)
-    title_bar(ax, "Practical Example 2  —  Eddy Currents & Magnetic Braking",
+    title_bar(ax, "Practical Example 2  —  Eddy Currents",
               TAG, alpha=a, accent=PINK)
 
     y_top, y_bot = 7.05, 2.15
@@ -105,7 +105,7 @@ def scene_eddy(ax, t, dur):
 # ==================================================================== 7 TRANSFORMER
 def scene_transformer(ax, t, dur):
     a = fade(t, 0.5, 0.4, dur)
-    title_bar(ax, "Practical Example 3  —  the Transformer (Mutual Induction)",
+    title_bar(ax, "Practical Example 3  —  the Transformer",
               TAG, alpha=a, accent=VIOLET)
 
     s = np.sin(2 * np.pi * max(0.0, t - 1.2) / 3.0)
