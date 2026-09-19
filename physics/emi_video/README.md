@@ -1,34 +1,64 @@
 # Electromagnetic Induction — Faraday's & Lenz's Law (explainer video)
 
-A 3:01, 1920×1080 @ 24 fps animated explainer built entirely in Python
+A narrated 3:55, 1920×1080 @ 24 fps animated explainer built entirely in Python
 (matplotlib + numpy), encoded with ffmpeg. Every diagram is drawn from code —
 no stock art, no AI image generation — so each frame is reproducible and
-editable.
+editable. A **Science Flux Classes** badge is burned into every frame.
 
 ## Contents
 
 | File | Purpose |
 |---|---|
-| `core.py` | Canvas, colour palette, easing, and the reusable physics primitives (solenoid, bar magnet, galvanometer, field markers, plot frames) |
+| `core.py` | Canvas, palette, easing, brand badge, and the reusable physics primitives (solenoid, bar magnet, galvanometer, field markers, plot frames) |
 | `scenes_a.py` | Scenes 1–5: title, magnetic flux, Faraday's law, Lenz's law, AC generator |
 | `scenes_b.py` | Scenes 6–10: eddy currents, transformer, motional EMF, solved example, formula sheet |
-| `render.py` | Scene list + durations; renders the whole film to MP4 |
-| `narration.md` | Timed voiceover script (≈2.5 words/s) matched to the scene boundaries |
+| `narrate.py` | The spoken script, and the synthesiser that renders each take to `audio/NN.wav` + `timing.json` |
+| `render.py` | Scene list, playout timing, and the frame renderer |
+| `build_audio.py` | Lays the takes onto a silent bed and muxes them onto the video |
+| `narration.md` | Generated from `narrate.py` — the script with timings |
 
 ## Scene running order
 
 | # | Scene | Start | Length |
 |---|---|---|---|
-| 1 | Title | 0:00 | 5 s |
-| 2 | Magnetic flux — φ = BA cos θ | 0:05 | 18 s |
-| 3 | Faraday's law — live φ–t and ε–t graphs | 0:23 | 26 s |
-| 4 | Lenz's law — opposition and energy conservation | 0:49 | 22 s |
-| 5 | AC generator — ε = NBAω sin ωt | 1:11 | 22 s |
-| 6 | Eddy currents — magnet in copper vs plastic pipe | 1:33 | 18 s |
-| 7 | Transformer — mutual induction | 1:51 | 18 s |
-| 8 | Motional EMF — ε = Bℓv | 2:09 | 20 s |
-| 9 | Solved example — exam pattern | 2:29 | 18 s |
-| 10 | Formula sheet | 2:47 | 14 s |
+| 1 | Title | 0:00 | 8.2 s |
+| 2 | Magnetic flux — φ = BA cos θ | 0:08 | 23.6 s |
+| 3 | Faraday's law — live φ–t and ε–t graphs | 0:31 | 32.2 s |
+| 4 | Lenz's law — opposition and energy conservation | 1:04 | 28.4 s |
+| 5 | AC generator — ε = NBAω sin ωt | 1:32 | 26.4 s |
+| 6 | Eddy currents — magnet in copper vs plastic pipe | 1:58 | 21.3 s |
+| 7 | Transformer — mutual induction | 2:20 | 24.4 s |
+| 8 | Motional EMF — ε = Bℓv | 2:44 | 24.8 s |
+| 9 | Solved example — exam pattern | 3:09 | 29.5 s |
+| 10 | Formula sheet | 3:38 | 17.1 s |
+
+## How the timing works
+
+Each scene is choreographed against a **design duration**. When a narration take
+is longer than that, `render.py` stretches the scene: it renders more frames and
+feeds the scene a scaled clock, so the authored animation plays slower rather
+than finishing early and freezing on a still. Change the script and the video
+re-times itself — you never hand-edit keyframes to match a voice track.
+
+## The voice
+
+`narrate.py` drives **espeak-ng** with an **MBROLA** diphone voice (`mb-us2`).
+This is the best voice reachable from this environment: the neural options
+(piper voices on huggingface.co, Google TTS) are both refused by the egress
+policy, and Higgsfield's TTS needs a paid plan. It is clear and correctly paced
+but audibly synthetic.
+
+To swap in a better voice, re-record the takes in `narration.md` as
+`audio/00.wav` … `audio/09.wav` (16 kHz mono), then re-run:
+
+```bash
+python3 narrate.py          # only to regenerate timing.json, skip if hand-recording
+python3 render.py EMI_Faraday_Lenz_silent.mp4
+python3 build_audio.py
+```
+
+Because the video re-times itself to the takes, a human recording of any length
+drops straight in.
 
 ## Physics notes on the animation
 
@@ -40,13 +70,22 @@ editable.
 * In scene 8 the current direction follows from qv×B (up the rod), which puts the
   force BIℓ opposite to v — Lenz's law, shown rather than asserted.
 
+## Layout is checked by measurement, not by eye
+
+Text collisions are caught with a render-and-measure pass: each scene is drawn,
+the window extents of the heading, the chapter tag and the golden-point line are
+taken, and real clearance is required between them. Eyeballing had already let
+two colliding headings through.
+
 ## Rebuilding
 
 ```bash
 pip install numpy matplotlib imageio imageio-ffmpeg
+apt-get install -y espeak-ng mbrola mbrola-us2
 cd physics/emi_video
-python3 render.py EMI_Faraday_Lenz.mp4
+python3 narrate.py
+python3 render.py EMI_Faraday_Lenz_silent.mp4
+python3 build_audio.py
 ```
 
-Renders ~4,300 frames in roughly 5 minutes on a single core. To change the
-running order or timings, edit the `SCENES` list in `render.py`.
+Renders ~5,660 frames in roughly seven minutes on a single core.

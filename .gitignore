@@ -1,3 +1,8 @@
 __pycache__/
 *.pyc
 .venv/
+
+# EMI video build intermediates (regenerate with narrate.py / render.py)
+physics/emi_video/audio/
+physics/emi_video/narration.wav
+physics/emi_video/EMI_Faraday_Lenz_silent.mp4

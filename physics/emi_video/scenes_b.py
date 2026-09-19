@@ -98,7 +98,7 @@ def scene_eddy(ax, t, dur):
         bullet(ax, 8.85, 3.62 - 0.5 * k, s, alpha=a * fade(t - (7.0 + 0.9 * k), 0.5),
                fs=15.5, dot=YELLOW, dotr=0.06)
 
-    footer(ax, "Eddy currents are minimised by LAMINATING the core — that is why transformer cores are thin sheets.",
+    footer(ax, "Eddy currents are minimised by LAMINATING the core into thin insulated sheets.",
            alpha=a, accent=PINK)
 
 
@@ -332,5 +332,5 @@ def scene_formulae(ax, t, dur):
         ax.text(x + 0.3, y + 0.5, tex, color=WHITE, fontsize=20, va="center",
                 ha="left", alpha=al, zorder=4)
 
-    footer(ax, "Learn the SIGN, the RATE and the OPPOSITION — every EMI question is built from these three ideas.",
+    footer(ax, "Learn the SIGN, the RATE and the OPPOSITION — every EMI question uses these three.",
            alpha=a, accent=YELLOW)

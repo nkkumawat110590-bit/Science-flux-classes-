@@ -87,12 +87,31 @@ def title_bar(ax, title, tag, alpha=1.0, accent=CYAN):
             va="center", ha="right", alpha=0.95 * alpha, zorder=3)
 
 
+# The footer bar stops at x=12.45 so the brand badge drawn by watermark()
+# always has clear space; nothing in the golden-point line may run into it.
+FOOTER_W = 12.1
+WM_X = 12.65
+
+
 def footer(ax, text, alpha=1.0, accent=YELLOW, label="GOLDEN POINT"):
-    panel(ax, 0.35, 0.22, 15.3, 0.7, fc="#22194A", ec=accent, alpha=0.95 * alpha, lw=1.6, z=2)
-    ax.text(0.62, 0.57, label, color=accent, fontsize=13, fontweight="bold",
+    panel(ax, 0.35, 0.22, FOOTER_W, 0.7, fc="#22194A", ec=accent,
+          alpha=0.95 * alpha, lw=1.6, z=2)
+    ax.text(0.62, 0.57, label, color=accent, fontsize=12.5, fontweight="bold",
             va="center", ha="left", alpha=alpha, zorder=3)
-    ax.text(2.85, 0.57, text, color=WHITE, fontsize=17.5, va="center", ha="left",
+    ax.text(2.72, 0.57, text, color=WHITE, fontsize=15.5, va="center", ha="left",
             alpha=alpha, zorder=3)
+
+
+def watermark(ax, alpha=1.0, accent=CYAN):
+    """Brand badge, drawn on every frame in its own reserved strip."""
+    panel(ax, WM_X, 0.22, 3.0, 0.7, fc="#16204A", ec=accent,
+          alpha=0.92 * alpha, lw=1.5, z=2)
+    ax.add_patch(Rectangle((WM_X, 0.22), 0.1, 0.7, facecolor=accent,
+                           edgecolor="none", alpha=alpha, zorder=3))
+    ax.text(14.2, 0.70, "SCIENCE FLUX", color=accent, fontsize=13.5,
+            fontweight="bold", va="center", ha="center", alpha=alpha, zorder=3)
+    ax.text(14.2, 0.42, "C L A S S E S", color=WHITE, fontsize=11,
+            fontweight="bold", va="center", ha="center", alpha=0.9 * alpha, zorder=3)
 
 
 def formula(ax, x, y, tex, fs=25, color=YELLOW, alpha=1.0, box=True,
