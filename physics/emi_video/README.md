@@ -42,23 +42,19 @@ re-times itself — you never hand-edit keyframes to match a voice track.
 
 ## The voice
 
-`narrate.py` drives **espeak-ng** with an **MBROLA** diphone voice (`mb-us2`).
-This is the best voice reachable from this environment: the neural options
-(piper voices on huggingface.co, Google TTS) are both refused by the egress
-policy, and Higgsfield's TTS needs a paid plan. It is clear and correctly paced
-but audibly synthetic.
+Narrated with **ElevenLabs** (`eleven_multilingual_v2`, voice *Ellis - British
+Modern* - a clear teaching voice built for explainer work). The ten takes are
+generated per scene, so any single line can be re-recorded without touching the
+others.
 
-To swap in a better voice, re-record the takes in `narration.md` as
-`audio/00.wav` … `audio/09.wav` (16 kHz mono), then re-run:
+`narrate.py` keeps a local espeak-ng + MBROLA fallback, used before ElevenLabs
+was reachable here. It is intelligible but audibly synthetic; the committed
+track is the ElevenLabs one.
 
-```bash
-python3 narrate.py          # only to regenerate timing.json, skip if hand-recording
-python3 render.py EMI_Faraday_Lenz_silent.mp4
-python3 build_audio.py
-```
-
-Because the video re-times itself to the takes, a human recording of any length
-drops straight in.
+To re-record a line: change it in `narrate.py`, regenerate that take as
+`audio/NN.wav` (16 kHz mono), then re-run `build_audio.py`. If the new take
+still fits its scene the video needs no re-render at all; if it is longer,
+re-run `render.py` first and the scene stretches to fit.
 
 ## Physics notes on the animation
 
