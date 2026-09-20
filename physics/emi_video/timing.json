@@ -1,0 +1,57 @@
+{
+  "lead_in": 0.6,
+  "tail": 0.9,
+  "rate": 16000,
+  "scenes": {
+    "Title": {
+      "audio": 6.68,
+      "scene": 8.18,
+      "words": 11
+    },
+    "Magnetic Flux": {
+      "audio": 22.15,
+      "scene": 23.65,
+      "words": 50
+    },
+    "Faraday's Law": {
+      "audio": 30.69,
+      "scene": 32.19,
+      "words": 76
+    },
+    "Lenz's Law": {
+      "audio": 26.95,
+      "scene": 28.45,
+      "words": 63
+    },
+    "AC Generator": {
+      "audio": 24.87,
+      "scene": 26.37,
+      "words": 66
+    },
+    "Eddy Currents": {
+      "audio": 19.77,
+      "scene": 21.27,
+      "words": 45
+    },
+    "Transformer": {
+      "audio": 22.89,
+      "scene": 24.39,
+      "words": 51
+    },
+    "Motional EMF": {
+      "audio": 23.29,
+      "scene": 24.79,
+      "words": 60
+    },
+    "Solved Example": {
+      "audio": 27.99,
+      "scene": 29.49,
+      "words": 68
+    },
+    "Formula Sheet": {
+      "audio": 15.58,
+      "scene": 17.08,
+      "words": 31
+    }
+  }
+}
