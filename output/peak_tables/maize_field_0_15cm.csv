@@ -1,0 +1,23 @@
+land_use,depth_cm,wavenumber_cm-1,transmittance_percent,absorbance,band_group,assignment
+Maize field,0-15,471.37,65.49,0.1838,silicate,Si-O-Si bending of quartz and phyllosilicates
+Maize field,0-15,523.45,68.86,0.1620,clay_bend,Si-O-Al bending of octahedral sheet
+Maize field,0-15,608.32,83.25,0.0796,feox,Fe-O and Si-O-Al bending
+Maize field,0-15,695.13,85.89,0.0661,quartz,Quartz / Si-O-Al vibration
+Maize field,0-15,735.63,86.84,0.0613,aromatic_oop,Aromatic C-H out-of-plane deformation
+Maize field,0-15,780.00,81.58,0.0884,quartz,"Quartz doublet, Si-O symmetric stretch"
+Maize field,0-15,799.29,81.52,0.0887,quartz,"Quartz doublet, Si-O symmetric stretch"
+Maize field,0-15,918.88,82.13,0.0855,clay_bend,Al-Al-OH deformation of dioctahedral clays
+Maize field,0-15,1032.69,42.21,0.3746,silicate,Si-O stretch of clay minerals; C-O of polysaccharides
+Maize field,0-15,1260.30,86.75,0.0617,phenolic_co,"C-O stretch and O-H deformation of phenols, aryl ethers"
+Maize field,0-15,1381.83,85.81,0.0665,nitrate,Nitrate v3; C-H bending of CH3
+Maize field,0-15,1455.13,84.63,0.0725,ch_bend,C-H deformation of CH2 / CH3; lignin methoxyl
+Maize field,0-15,1563.15,89.41,0.0486,aromatic_amide,Amide II N-H bend / C-N stretch; COO- asymmetric stretch
+Maize field,0-15,1648.02,84.60,0.0727,aromatic_amide,"Aromatic C=C, amide I C=O and H-O-H bending"
+Maize field,0-15,1713.60,85.97,0.0657,carboxyl,"C=O stretch of carboxylic acids, ketones and aldehydes"
+Maize field,0-15,2153.40,95.07,0.0220,silica_ot,Quartz / silicate overtone-combination band
+Maize field,0-15,2516.04,95.19,0.0214,carbonate,Carbonate combination band (calcite)
+Maize field,0-15,2849.75,92.04,0.0360,aliphatic,Symmetric C-H stretch of aliphatic CH2
+Maize field,0-15,2926.90,89.28,0.0492,aliphatic,Asymmetric C-H stretch of aliphatic CH2
+Maize field,0-15,3387.92,78.18,0.1069,water_oh,"Broad O-H stretch: sorbed water, phenolic and alcoholic OH"
+Maize field,0-15,3617.46,86.27,0.0641,clay_oh,Al-Al-OH stretch of 1:1 / 2:1 clays
+Maize field,0-15,3694.62,91.47,0.0387,clay_oh,Kaolinite inner-surface O-H stretch

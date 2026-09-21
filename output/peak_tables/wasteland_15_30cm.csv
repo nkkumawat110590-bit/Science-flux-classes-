@@ -1,0 +1,19 @@
+land_use,depth_cm,wavenumber_cm-1,transmittance_percent,absorbance,band_group,assignment
+Wasteland,15-30,467.51,61.49,0.2112,silicate,Si-O-Si bending of quartz and phyllosilicates
+Wasteland,15-30,521.52,64.52,0.1903,clay_bend,Si-O-Al bending of octahedral sheet
+Wasteland,15-30,608.32,81.99,0.0862,feox,Fe-O and Si-O-Al bending
+Wasteland,15-30,695.13,84.26,0.0744,quartz,Quartz / Si-O-Al vibration
+Wasteland,15-30,776.14,79.53,0.0995,quartz,"Quartz doublet, Si-O symmetric stretch"
+Wasteland,15-30,799.29,77.88,0.1086,quartz,"Quartz doublet, Si-O symmetric stretch"
+Wasteland,15-30,874.52,81.37,0.0895,carbonate,Carbonate v2 out-of-plane bend (calcite)
+Wasteland,15-30,916.95,80.96,0.0917,clay_bend,Al-Al-OH deformation of dioctahedral clays
+Wasteland,15-30,1040.41,36.82,0.4339,silicate,Si-O stretch of clay minerals; C-O of polysaccharides
+Wasteland,15-30,1424.26,79.16,0.1015,carbonate,Carbonate v3 asymmetric stretch; COO- symmetric stretch
+Wasteland,15-30,1644.16,90.34,0.0441,aromatic_amide,"Aromatic C=C, amide I C=O and H-O-H bending"
+Wasteland,15-30,1790.76,92.19,0.0353,carbonate,Carbonate overtone (calcite)
+Wasteland,15-30,2155.33,93.91,0.0273,silica_ot,Quartz / silicate overtone-combination band
+Wasteland,15-30,2521.83,90.95,0.0412,carbonate,Carbonate combination band (calcite)
+Wasteland,15-30,2924.97,94.10,0.0264,aliphatic,Asymmetric C-H stretch of aliphatic CH2
+Wasteland,15-30,3395.63,82.92,0.0813,water_oh,"Broad O-H stretch: sorbed water, phenolic and alcoholic OH"
+Wasteland,15-30,3619.39,86.06,0.0652,clay_oh,Al-Al-OH stretch of 1:1 / 2:1 clays
+Wasteland,15-30,3692.69,90.17,0.0449,clay_oh,Kaolinite inner-surface O-H stretch

@@ -1,0 +1,21 @@
+land_use,depth_cm,wavenumber_cm-1,transmittance_percent,absorbance,band_group,assignment
+Grazing land,15-30,467.51,65.11,0.1864,silicate,Si-O-Si bending of quartz and phyllosilicates
+Grazing land,15-30,521.52,69.01,0.1611,clay_bend,Si-O-Al bending of octahedral sheet
+Grazing land,15-30,608.32,83.56,0.0780,feox,Fe-O and Si-O-Al bending
+Grazing land,15-30,695.13,85.71,0.0670,quartz,Quartz / Si-O-Al vibration
+Grazing land,15-30,780.00,80.99,0.0916,quartz,"Quartz doublet, Si-O symmetric stretch"
+Grazing land,15-30,797.36,80.85,0.0923,quartz,"Quartz doublet, Si-O symmetric stretch"
+Grazing land,15-30,915.03,82.55,0.0833,clay_bend,Al-Al-OH deformation of dioctahedral clays
+Grazing land,15-30,1036.55,39.76,0.4006,silicate,Si-O stretch of clay minerals; C-O of polysaccharides
+Grazing land,15-30,1262.23,88.54,0.0529,phenolic_co,"C-O stretch and O-H deformation of phenols, aryl ethers"
+Grazing land,15-30,1455.13,85.78,0.0666,ch_bend,C-H deformation of CH2 / CH3; lignin methoxyl
+Grazing land,15-30,1561.22,89.02,0.0505,aromatic_amide,Amide II N-H bend / C-N stretch; COO- asymmetric stretch
+Grazing land,15-30,1651.88,85.52,0.0679,aromatic_amide,"Aromatic C=C, amide I C=O and H-O-H bending"
+Grazing land,15-30,1713.60,88.17,0.0547,carboxyl,"C=O stretch of carboxylic acids, ketones and aldehydes"
+Grazing land,15-30,2153.40,94.25,0.0257,silica_ot,Quartz / silicate overtone-combination band
+Grazing land,15-30,2519.90,93.76,0.0280,carbonate,Carbonate combination band (calcite)
+Grazing land,15-30,2853.60,92.01,0.0362,aliphatic,Symmetric C-H stretch of aliphatic CH2
+Grazing land,15-30,2924.97,89.98,0.0459,aliphatic,Asymmetric C-H stretch of aliphatic CH2
+Grazing land,15-30,3387.92,76.58,0.1159,water_oh,"Broad O-H stretch: sorbed water, phenolic and alcoholic OH"
+Grazing land,15-30,3615.53,83.15,0.0801,clay_oh,Al-Al-OH stretch of 1:1 / 2:1 clays
+Grazing land,15-30,3694.62,89.03,0.0505,clay_oh,Kaolinite inner-surface O-H stretch

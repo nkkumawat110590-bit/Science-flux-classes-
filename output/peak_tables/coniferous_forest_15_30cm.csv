@@ -1,0 +1,20 @@
+land_use,depth_cm,wavenumber_cm-1,transmittance_percent,absorbance,band_group,assignment
+Coniferous forest,15-30,461.73,66.23,0.1789,silicate,Si-O-Si bending of quartz and phyllosilicates
+Coniferous forest,15-30,521.52,69.43,0.1585,clay_bend,Si-O-Al bending of octahedral sheet
+Coniferous forest,15-30,612.18,83.19,0.0799,feox,Fe-O and Si-O-Al bending
+Coniferous forest,15-30,695.13,86.19,0.0645,quartz,Quartz / Si-O-Al vibration
+Coniferous forest,15-30,778.07,82.56,0.0832,quartz,"Quartz doublet, Si-O symmetric stretch"
+Coniferous forest,15-30,801.22,81.30,0.0899,quartz,"Quartz doublet, Si-O symmetric stretch"
+Coniferous forest,15-30,915.03,82.27,0.0847,clay_bend,Al-Al-OH deformation of dioctahedral clays
+Coniferous forest,15-30,1032.69,43.15,0.3650,silicate,Si-O stretch of clay minerals; C-O of polysaccharides
+Coniferous forest,15-30,1256.45,88.09,0.0551,phenolic_co,"C-O stretch and O-H deformation of phenols, aryl ethers"
+Coniferous forest,15-30,1453.20,89.04,0.0504,ch_bend,C-H deformation of CH2 / CH3; lignin methoxyl
+Coniferous forest,15-30,1563.15,89.99,0.0458,aromatic_amide,Amide II N-H bend / C-N stretch; COO- asymmetric stretch
+Coniferous forest,15-30,1649.95,86.44,0.0633,aromatic_amide,"Aromatic C=C, amide I C=O and H-O-H bending"
+Coniferous forest,15-30,1711.68,87.52,0.0579,carboxyl,"C=O stretch of carboxylic acids, ketones and aldehydes"
+Coniferous forest,15-30,2145.69,94.05,0.0267,silica_ot,Quartz / silicate overtone-combination band
+Coniferous forest,15-30,2855.53,90.99,0.0410,aliphatic,Symmetric C-H stretch of aliphatic CH2
+Coniferous forest,15-30,2928.83,88.35,0.0538,aliphatic,Asymmetric C-H stretch of aliphatic CH2
+Coniferous forest,15-30,3403.35,71.36,0.1466,water_oh,"Broad O-H stretch: sorbed water, phenolic and alcoholic OH"
+Coniferous forest,15-30,3619.39,81.44,0.0892,clay_oh,Al-Al-OH stretch of 1:1 / 2:1 clays
+Coniferous forest,15-30,3698.48,87.88,0.0561,clay_oh,Kaolinite inner-surface O-H stretch

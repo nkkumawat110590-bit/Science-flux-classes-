@@ -1,0 +1,22 @@
+land_use,depth_cm,wavenumber_cm-1,transmittance_percent,absorbance,band_group,assignment
+Apple orchard,0-15,469.44,64.86,0.1880,silicate,Si-O-Si bending of quartz and phyllosilicates
+Apple orchard,0-15,519.59,69.02,0.1610,clay_bend,Si-O-Al bending of octahedral sheet
+Apple orchard,0-15,612.18,84.00,0.0757,feox,Fe-O and Si-O-Al bending
+Apple orchard,0-15,695.13,86.11,0.0650,quartz,Quartz / Si-O-Al vibration
+Apple orchard,0-15,739.49,86.21,0.0644,aromatic_oop,Aromatic C-H out-of-plane deformation
+Apple orchard,0-15,780.00,82.11,0.0856,quartz,"Quartz doublet, Si-O symmetric stretch"
+Apple orchard,0-15,799.29,81.18,0.0906,quartz,"Quartz doublet, Si-O symmetric stretch"
+Apple orchard,0-15,913.10,82.50,0.0836,clay_bend,Al-Al-OH deformation of dioctahedral clays
+Apple orchard,0-15,1034.62,40.98,0.3874,silicate,Si-O stretch of clay minerals; C-O of polysaccharides
+Apple orchard,0-15,1266.09,85.45,0.0683,phenolic_co,"C-O stretch and O-H deformation of phenols, aryl ethers"
+Apple orchard,0-15,1453.20,82.08,0.0858,ch_bend,C-H deformation of CH2 / CH3; lignin methoxyl
+Apple orchard,0-15,1565.08,86.77,0.0616,aromatic_amide,Amide II N-H bend / C-N stretch; COO- asymmetric stretch
+Apple orchard,0-15,1651.88,82.21,0.0851,aromatic_amide,"Aromatic C=C, amide I C=O and H-O-H bending"
+Apple orchard,0-15,1717.46,84.04,0.0755,carboxyl,"C=O stretch of carboxylic acids, ketones and aldehydes"
+Apple orchard,0-15,2166.90,94.98,0.0224,silica_ot,Quartz / silicate overtone-combination band
+Apple orchard,0-15,2514.11,93.47,0.0293,carbonate,Carbonate combination band (calcite)
+Apple orchard,0-15,2857.46,91.15,0.0402,aliphatic,Symmetric C-H stretch of aliphatic CH2
+Apple orchard,0-15,2924.97,87.62,0.0574,aliphatic,Asymmetric C-H stretch of aliphatic CH2
+Apple orchard,0-15,3401.42,79.02,0.1023,water_oh,"Broad O-H stretch: sorbed water, phenolic and alcoholic OH"
+Apple orchard,0-15,3621.32,86.00,0.0655,clay_oh,Al-Al-OH stretch of 1:1 / 2:1 clays
+Apple orchard,0-15,3690.76,91.16,0.0402,clay_oh,Kaolinite inner-surface O-H stretch

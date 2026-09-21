@@ -1,0 +1,23 @@
+land_use,depth_cm,wavenumber_cm-1,transmittance_percent,absorbance,band_group,assignment
+Grazing land,0-15,463.65,67.18,0.1728,silicate,Si-O-Si bending of quartz and phyllosilicates
+Grazing land,0-15,521.52,71.32,0.1468,clay_bend,Si-O-Al bending of octahedral sheet
+Grazing land,0-15,610.25,83.63,0.0777,feox,Fe-O and Si-O-Al bending
+Grazing land,0-15,695.13,86.50,0.0630,quartz,Quartz / Si-O-Al vibration
+Grazing land,0-15,739.49,86.28,0.0641,aromatic_oop,Aromatic C-H out-of-plane deformation
+Grazing land,0-15,780.00,82.47,0.0837,quartz,"Quartz doublet, Si-O symmetric stretch"
+Grazing land,0-15,799.29,80.97,0.0917,quartz,"Quartz doublet, Si-O symmetric stretch"
+Grazing land,0-15,913.10,82.82,0.0819,clay_bend,Al-Al-OH deformation of dioctahedral clays
+Grazing land,0-15,1030.76,45.52,0.3418,silicate,Si-O stretch of clay minerals; C-O of polysaccharides
+Grazing land,0-15,1269.95,85.55,0.0678,phenolic_co,"C-O stretch and O-H deformation of phenols, aryl ethers"
+Grazing land,0-15,1455.13,83.97,0.0759,ch_bend,C-H deformation of CH2 / CH3; lignin methoxyl
+Grazing land,0-15,1505.28,87.76,0.0567,aromatic_amide,Aromatic skeletal C=C of lignin
+Grazing land,0-15,1563.15,85.99,0.0656,aromatic_amide,Amide II N-H bend / C-N stretch; COO- asymmetric stretch
+Grazing land,0-15,1649.95,80.59,0.0937,aromatic_amide,"Aromatic C=C, amide I C=O and H-O-H bending"
+Grazing land,0-15,1713.60,83.49,0.0784,carboxyl,"C=O stretch of carboxylic acids, ketones and aldehydes"
+Grazing land,0-15,2163.05,94.94,0.0225,silica_ot,Quartz / silicate overtone-combination band
+Grazing land,0-15,2521.83,94.98,0.0224,carbonate,Carbonate combination band (calcite)
+Grazing land,0-15,2853.60,89.74,0.0470,aliphatic,Symmetric C-H stretch of aliphatic CH2
+Grazing land,0-15,2924.97,86.23,0.0644,aliphatic,Asymmetric C-H stretch of aliphatic CH2
+Grazing land,0-15,3399.49,75.86,0.1200,water_oh,"Broad O-H stretch: sorbed water, phenolic and alcoholic OH"
+Grazing land,0-15,3619.39,83.91,0.0762,clay_oh,Al-Al-OH stretch of 1:1 / 2:1 clays
+Grazing land,0-15,3694.62,89.82,0.0466,clay_oh,Kaolinite inner-surface O-H stretch

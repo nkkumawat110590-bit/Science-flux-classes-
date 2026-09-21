@@ -1,0 +1,23 @@
+land_use,depth_cm,wavenumber_cm-1,transmittance_percent,absorbance,band_group,assignment
+Apple orchard,15-30,465.58,64.23,0.1923,silicate,Si-O-Si bending of quartz and phyllosilicates
+Apple orchard,15-30,521.52,68.77,0.1626,clay_bend,Si-O-Al bending of octahedral sheet
+Apple orchard,15-30,608.32,83.01,0.0809,feox,Fe-O and Si-O-Al bending
+Apple orchard,15-30,693.20,86.05,0.0652,quartz,Quartz / Si-O-Al vibration
+Apple orchard,15-30,781.93,81.06,0.0912,quartz,"Quartz doublet, Si-O symmetric stretch"
+Apple orchard,15-30,797.36,79.74,0.0983,quartz,"Quartz doublet, Si-O symmetric stretch"
+Apple orchard,15-30,876.45,81.71,0.0877,carbonate,Carbonate v2 out-of-plane bend (calcite)
+Apple orchard,15-30,913.10,81.32,0.0898,clay_bend,Al-Al-OH deformation of dioctahedral clays
+Apple orchard,15-30,1028.83,38.39,0.4158,silicate,Si-O stretch of clay minerals; C-O of polysaccharides
+Apple orchard,15-30,1266.09,86.75,0.0617,phenolic_co,"C-O stretch and O-H deformation of phenols, aryl ethers"
+Apple orchard,15-30,1433.91,80.44,0.0945,carbonate,Carbonate v3 asymmetric stretch; COO- symmetric stretch
+Apple orchard,15-30,1559.29,89.03,0.0504,aromatic_amide,Amide II N-H bend / C-N stretch; COO- asymmetric stretch
+Apple orchard,15-30,1655.74,86.38,0.0636,aromatic_amide,"Aromatic C=C, amide I C=O and H-O-H bending"
+Apple orchard,15-30,1717.46,87.66,0.0572,carboxyl,"C=O stretch of carboxylic acids, ketones and aldehydes"
+Apple orchard,15-30,1794.62,92.07,0.0359,carbonate,Carbonate overtone (calcite)
+Apple orchard,15-30,2155.33,94.12,0.0263,silica_ot,Quartz / silicate overtone-combination band
+Apple orchard,15-30,2514.11,91.12,0.0404,carbonate,Carbonate combination band (calcite)
+Apple orchard,15-30,2855.53,92.01,0.0362,aliphatic,Symmetric C-H stretch of aliphatic CH2
+Apple orchard,15-30,2926.90,89.41,0.0486,aliphatic,Asymmetric C-H stretch of aliphatic CH2
+Apple orchard,15-30,3395.63,78.02,0.1078,water_oh,"Broad O-H stretch: sorbed water, phenolic and alcoholic OH"
+Apple orchard,15-30,3617.46,83.91,0.0762,clay_oh,Al-Al-OH stretch of 1:1 / 2:1 clays
+Apple orchard,15-30,3692.69,89.08,0.0502,clay_oh,Kaolinite inner-surface O-H stretch

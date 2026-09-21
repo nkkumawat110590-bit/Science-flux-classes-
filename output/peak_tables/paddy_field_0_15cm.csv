@@ -1,0 +1,22 @@
+land_use,depth_cm,wavenumber_cm-1,transmittance_percent,absorbance,band_group,assignment
+Paddy field,0-15,465.58,62.27,0.2057,silicate,Si-O-Si bending of quartz and phyllosilicates
+Paddy field,0-15,521.52,65.50,0.1838,clay_bend,Si-O-Al bending of octahedral sheet
+Paddy field,0-15,614.11,80.99,0.0916,feox,Fe-O and Si-O-Al bending
+Paddy field,0-15,693.20,85.74,0.0668,quartz,Quartz / Si-O-Al vibration
+Paddy field,0-15,739.49,85.41,0.0685,aromatic_oop,Aromatic C-H out-of-plane deformation
+Paddy field,0-15,780.00,81.56,0.0885,quartz,"Quartz doublet, Si-O symmetric stretch"
+Paddy field,0-15,801.22,81.44,0.0892,quartz,"Quartz doublet, Si-O symmetric stretch"
+Paddy field,0-15,918.88,81.55,0.0886,clay_bend,Al-Al-OH deformation of dioctahedral clays
+Paddy field,0-15,1032.69,34.58,0.4611,silicate,Si-O stretch of clay minerals; C-O of polysaccharides
+Paddy field,0-15,1262.23,85.03,0.0704,phenolic_co,"C-O stretch and O-H deformation of phenols, aryl ethers"
+Paddy field,0-15,1455.13,85.68,0.0671,ch_bend,C-H deformation of CH2 / CH3; lignin methoxyl
+Paddy field,0-15,1509.14,87.81,0.0565,aromatic_amide,Aromatic skeletal C=C of lignin
+Paddy field,0-15,1561.22,86.10,0.0650,aromatic_amide,Amide II N-H bend / C-N stretch; COO- asymmetric stretch
+Paddy field,0-15,1646.09,78.67,0.1042,aromatic_amide,"Aromatic C=C, amide I C=O and H-O-H bending"
+Paddy field,0-15,1715.53,82.50,0.0836,carboxyl,"C=O stretch of carboxylic acids, ketones and aldehydes"
+Paddy field,0-15,2147.61,94.21,0.0259,silica_ot,Quartz / silicate overtone-combination band
+Paddy field,0-15,2859.39,91.57,0.0383,aliphatic,Symmetric C-H stretch of aliphatic CH2
+Paddy field,0-15,2926.90,88.56,0.0528,aliphatic,Asymmetric C-H stretch of aliphatic CH2
+Paddy field,0-15,3405.28,74.89,0.1256,water_oh,"Broad O-H stretch: sorbed water, phenolic and alcoholic OH"
+Paddy field,0-15,3623.25,83.64,0.0776,clay_oh,Al-Al-OH stretch of 1:1 / 2:1 clays
+Paddy field,0-15,3696.55,89.37,0.0488,clay_oh,Kaolinite inner-surface O-H stretch
